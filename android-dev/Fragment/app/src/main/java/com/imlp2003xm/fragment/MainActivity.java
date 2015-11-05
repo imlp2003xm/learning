@@ -1,18 +1,25 @@
 package com.imlp2003xm.fragment;
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
 
-            setListAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1, Shakespear.TITLES));
+            setListAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1, Shakespeare.TITLES));
 
             View detailsFrame = getActivity().findViewById(R.id.details);
             mDualPane = detailsFrame != null && detailsFrame.getVisibility() == View.VISIBLE;
@@ -96,16 +103,12 @@ public class MainActivity extends AppCompatActivity {
             if (mDualPane) {
                 getListView().setItemChecked(index, true);
 
-                DetailsFragement details = (DetailsFragment) getFragmentManager().findFragmentById(R.id.details);
+                DetailsFragment details = (DetailsFragment) getFragmentManager().findFragmentById(R.id.details);
                 if (details == null || details.getShownIndex() != index) {
                     details = DetailsFragment.newInstance(index);
 
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    if (index == 0) {
-                        ft.replace(R.id.details, details);
-                    } else {
-                        ft.replace(R.id.a_item, details);
-                    }
+                    ft.replace(R.id.details, details);
 
                     ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                     ft.commit();
@@ -116,6 +119,39 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("index", index);
                 startActivity(intent);
             }
+        }
+    }
+
+    public static class DetailsFragment extends Fragment {
+
+        public static DetailsFragment newInstance(int index) {
+            DetailsFragment f = new DetailsFragment();
+
+            Bundle args = new Bundle();
+            args.putInt("index", index);
+            f.setArguments(args);
+
+            return f;
+        }
+
+        public int getShownIndex() {
+            return this.getArguments().getInt("index", 0);
+        }
+
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            if (container == null) {
+                return null;
+            }
+
+            ScrollView scroller = new ScrollView(getActivity());
+            TextView text = new TextView(getActivity());
+            int padding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getActivity().getResources().getDisplayMetrics());
+            text.setPadding(padding, padding, padding, padding);
+            scroller.addView(text);
+            text.setText(Shakespeare.DIALOGUE[getShownIndex()]);
+            return scroller;
         }
     }
 }
