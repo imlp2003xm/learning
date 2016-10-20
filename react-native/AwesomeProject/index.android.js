@@ -9,7 +9,8 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
 
 const COMPONENT_RENDERERS = {};
@@ -19,7 +20,7 @@ export default class AwesomeProject extends Component {
     super(props, context);
 
     this.state = {
-      componentName: 'Introduction'
+      componentName: 'Banana'
     };
   }
   render() {
@@ -87,4 +88,23 @@ COMPONENT_RENDERERS.HelloWorld = function() {
   );
 };
 
+
+
+class Banana extends Component {
+  render() {
+    let pic = {
+      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+    };
+
+    return (
+      <Image source={pic} style={{width: 193, height: 110}}/>
+    );
+  }
+}
+
+COMPONENT_RENDERERS.Banana = () => {
+  return (
+    <Banana/>
+  );
+};
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
