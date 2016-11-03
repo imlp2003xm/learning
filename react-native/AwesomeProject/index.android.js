@@ -5,22 +5,33 @@
  */
 
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Image
-} from 'react-native';
+import { AppRegistry } from 'react-native';
+import Introduction from './my_modules/GetStarted/introduction'
+import HelloWorld from './my_modules/GetStarted/hello-world'
+import Banana from './my_modules/GetStarted/banana'
+import LotsOfStyles from './my_modules/GetStarted/lots-of-styles'
+import FixedDimensionsBasics from './my_modules/GetStarted/fixed-dimensions-basics'
+import FlexDimensionsBasics from './my_modules/GetStarted/flex-dimensions-basics'
 
-const COMPONENT_RENDERERS = {};
+const COMPONENT_RENDERERS = {
+  FixedDimensionsBasics: ()=> {
+    return (
+      <FixedDimensionsBasics/>
+    )
+  },
+  FlexDimensionsBasics: ()=> {
+    return (
+      <FlexDimensionsBasics/>
+    )
+  }
+};
 
 export default class AwesomeProject extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      componentName: 'Banana'
+      componentName: 'FlexDimensionsBasics'
     };
   }
   render() {
@@ -30,81 +41,31 @@ export default class AwesomeProject extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: 'red'
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
-class Introduction extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
-}
+
+
 COMPONENT_RENDERERS.Introduction = ()=> {
   return (
     <Introduction/>
   )
 };
 
-
-class HelloWorld extends Component {
-  render() {
-    return (
-      <Text>Hello World!</Text>
-    );
-  }
-}
 COMPONENT_RENDERERS.HelloWorld = function() {
   return (
     <HelloWorld/>
   );
 };
 
-
-
-class Banana extends Component {
-  render() {
-    let pic = {
-      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-    };
-
-    return (
-      <Image source={pic} style={{width: 193, height: 110}}/>
-    );
-  }
-}
-
 COMPONENT_RENDERERS.Banana = () => {
   return (
     <Banana/>
   );
 };
+
+COMPONENT_RENDERERS.LotsOfStyles = () => {
+  return (
+    <LotsOfStyles/>
+  )
+}
+
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
