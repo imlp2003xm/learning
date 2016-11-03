@@ -12,6 +12,7 @@ import Banana from './my_modules/GetStarted/banana'
 import LotsOfStyles from './my_modules/GetStarted/lots-of-styles'
 import FixedDimensionsBasics from './my_modules/GetStarted/fixed-dimensions-basics'
 import FlexDimensionsBasics from './my_modules/GetStarted/flex-dimensions-basics'
+import FlexDirectionBasics from './my_modules/GetStarted/flex-direction-basics'
 
 const COMPONENT_RENDERERS = {
   FixedDimensionsBasics: ()=> {
@@ -23,6 +24,11 @@ const COMPONENT_RENDERERS = {
     return (
       <FlexDimensionsBasics/>
     )
+  },
+  FlexDirectionBasics: () => {
+    return (
+      <FlexDirectionBasics/>
+    )
   }
 };
 
@@ -31,7 +37,7 @@ export default class AwesomeProject extends Component {
     super(props, context);
 
     this.state = {
-      componentName: 'FlexDimensionsBasics'
+      componentName: 'FlexDirectionBasics'
     };
   }
   render() {
