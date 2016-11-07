@@ -13,6 +13,9 @@ import LotsOfStyles from './my_modules/GetStarted/lots-of-styles'
 import FixedDimensionsBasics from './my_modules/GetStarted/fixed-dimensions-basics'
 import FlexDimensionsBasics from './my_modules/GetStarted/flex-dimensions-basics'
 import FlexDirectionBasics from './my_modules/GetStarted/flex-direction-basics'
+import PizzaTranslator from './my_modules/GetStarted/pizza-translator'
+import UserList from './my_modules/GetStarted/user-list'
+
 
 const COMPONENT_RENDERERS = {
   FixedDimensionsBasics: ()=> {
@@ -29,6 +32,16 @@ const COMPONENT_RENDERERS = {
     return (
       <FlexDirectionBasics/>
     )
+  },
+  PizzaTranslator: () => {
+    return (
+      <PizzaTranslator/>
+    )
+  },
+  UserList: () => {
+    return (
+      <UserList/>
+    )
   }
 };
 
@@ -37,7 +50,7 @@ export default class AwesomeProject extends Component {
     super(props, context);
 
     this.state = {
-      componentName: 'FlexDirectionBasics'
+      componentName: 'UserList'
     };
   }
   render() {
