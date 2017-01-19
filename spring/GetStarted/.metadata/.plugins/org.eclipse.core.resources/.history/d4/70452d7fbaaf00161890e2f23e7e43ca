@@ -1,0 +1,5 @@
+package com.wdgrolls.learning.spring.rookiessm.autowire;
+
+public class Foo {
+
+}

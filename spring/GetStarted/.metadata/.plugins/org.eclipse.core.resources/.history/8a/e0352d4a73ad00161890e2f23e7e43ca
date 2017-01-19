@@ -1,0 +1,14 @@
+package com.wdgrolls.learning.spring.rookiessm;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class FullNameMain {
+
+	private Logger log = LoggerFactory.getLogger(getClass());
+	
+	public static void main(String[] args) {
+
+	}
+
+}

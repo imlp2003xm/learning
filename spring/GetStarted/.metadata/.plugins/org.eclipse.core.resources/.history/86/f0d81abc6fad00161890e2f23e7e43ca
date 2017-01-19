@@ -1,0 +1,10 @@
+package com.wdgrolls.learning.spring.rookiessm;
+
+public class FullNameMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
