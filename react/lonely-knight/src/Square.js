@@ -11,7 +11,10 @@ export default class Square extends Component {
 				backgroundColor: fill,
 				color: stroke,
 				width: '100%',
-				height: '100%'
+				height: '100%',
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center'
 			}}>
 			  {this.props.children}
 			</div>
